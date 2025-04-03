@@ -3,7 +3,8 @@ import 'dart:js_interop';
 import 'package:web/web.dart';
 
 Future<void> downloadFile(String logs) async {
-  final jsArray = JSArray.from<JSString>(logs.toJS as JSObject);
+  final jsArray = JSArray<JSAny>();
+  jsArray.add(logs.toJS);
   final blob = Blob(jsArray, BlobPropertyBag(type: 'text/plain'));
 
   final fmtDate = DateTime.now().toString().replaceAll(':', ' ');

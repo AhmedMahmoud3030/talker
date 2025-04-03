@@ -1,42 +1,34 @@
 #!/bin/sh
 
 echo "talker"
-cd packages/talker
+cd /Users/ahmedel-beah/Desktop/talker/packages/talker
 flutter pub get
 
 echo "talker_flutter"
-cd ../talker_flutter
+cd /Users/ahmedel-beah/Desktop/talker/packages/talker_flutter
 flutter pub get
 
 echo "talker_flutter_example"
-cd example
+cd /Users/ahmedel-beah/Desktop/talker/packages/talker_flutter/example
 flutter pub get
-cd ..
+
 
 echo "talker_logger"
-cd ../talker_logger
+cd /Users/ahmedel-beah/Desktop/talker/packages/talker_logger
 flutter pub get
 
 echo "talker_dio_logger"
-cd ../talker_dio_logger
+cd /Users/ahmedel-beah/Desktop/talker/packages/talker_dio_logger
 flutter pub get
 
 echo "talker_bloc_logger"
-cd ../talker_bloc_logger
+cd /Users/ahmedel-beah/Desktop/talker/packages/talker_bloc_logger
 flutter pub get
 
 echo "talker_http_logger"
-cd ../talker_http_logger
+cd /Users/ahmedel-beah/Desktop/talker/packages/talker_http_logger
 flutter pub get
 
 echo "talker_riverpod_logger"
-cd ../talker_riverpod_logger
-flutter pub get
-
-echo "shop_app_example"
-cd ../../examples/shop_app_example
-flutter pub get
-
-echo "custom_logs_example"
-cd ../../examples/custom_logs_example
+cd /Users/ahmedel-beah/Desktop/talker/packages/talker_riverpod_logger
 flutter pub get
