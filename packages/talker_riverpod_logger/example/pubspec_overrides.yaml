@@ -1,7 +1,0 @@
-dependency_overrides:
-  talker_riverpod_logger:
-    path:
-      ..
-  talker:
-    path:
-      ../../talker

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:talker_example/extended_example/extended_example.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
 /// You can see [ExtendedExample] to
