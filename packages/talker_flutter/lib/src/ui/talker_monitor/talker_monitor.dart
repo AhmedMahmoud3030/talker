@@ -23,7 +23,12 @@ class TalkerMonitor extends StatelessWidget {
       appBar: AppBar(
         title: const FittedBox(
           fit: BoxFit.scaleDown,
-          child: Text('Talker Monitor'),
+          child: Text(
+            'E& Monitor',
+            style: TextStyle(
+              color: Colors.red,
+            ),
+          ),
         ),
       ),
       body: TalkerBuilder(

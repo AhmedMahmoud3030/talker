@@ -143,7 +143,7 @@ class _TalkerSettingsBottomSheetState extends State<TalkerSettingsBottomSheet> {
     ];
 
     return BaseBottomSheet(
-      title: 'Talker Settings',
+      title: 'E& Settings',
       talkerScreenTheme: widget.talkerScreenTheme,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -227,6 +227,11 @@ class _TalkerViewState extends State<TalkerView> {
               title: 'Share logs file',
               icon: Icons.ios_share_outlined,
             ),
+            TalkerActionItem(
+              onTap: _shareHttpsLogsInFile,
+              title: 'Share https logs file',
+              icon: Icons.wifi_1_bar_outlined,
+            ),
           ],
           talkerScreenTheme: widget.theme,
         );
@@ -237,6 +242,15 @@ class _TalkerViewState extends State<TalkerView> {
   Future<void> _shareLogsInFile() async {
     await _controller.downloadLogsFile(
       widget.talker.history.text(timeFormat: widget.talker.settings.timeFormat),
+    );
+  }
+
+  Future<void> _shareHttpsLogsInFile() async {
+    await _controller.downloadLogsFile(
+      widget.talker.history
+          .where((e) => e.key?.contains('http') ?? false)
+          .toList()
+          .text(timeFormat: widget.talker.settings.timeFormat),
     );
   }
 
