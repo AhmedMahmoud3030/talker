@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:group_button/group_button.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:talker_flutter/src/controller/controller.dart';
 import 'package:talker_flutter/src/ui/talker_monitor/talker_monitor.dart';
 import 'package:talker_flutter/src/ui/talker_settings/talker_settings.dart';
@@ -231,12 +231,12 @@ class _TalkerViewState extends State<TalkerView> {
             TalkerActionItem(
               onTap: _shareHttpsLogsInFile,
               title: 'Share https logs file',
-              icon: Icons.wifi_1_bar_outlined,
+              icon: Icons.ios_share_outlined,
             ),
             TalkerActionItem(
               onTap: _shareLogsToDevelopers,
               title: 'Direct share to developers',
-              icon: Icons.developer_board,
+              icon: Icons.code,
             ),
           ],
           talkerScreenTheme: widget.theme,
@@ -264,10 +264,19 @@ class _TalkerViewState extends State<TalkerView> {
     final logs = widget.talker.history
         .text(timeFormat: widget.talker.settings.timeFormat);
 
-    await Share.share(
-      logs,
-      subject: 'E& Logs - ${DateTime.now().toString()}',
+    final Email email = Email(
+      body: 'Please find the attached log file.',
+      subject: 'App Logs',
+      recipients: ['support@example.com'],
+      attachmentPaths: [logs],
+      isHTML: false,
     );
+    try {
+      await FlutterEmailSender.send(email);
+    } catch (error) {
+      debugPrint('Error sending email: $error');
+      // Handle the error (e.g., show a message to the user)
+    }
   }
 
   void _cleanHistory() {

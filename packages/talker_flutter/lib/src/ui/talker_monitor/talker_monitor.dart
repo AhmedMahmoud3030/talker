@@ -24,7 +24,7 @@ class TalkerMonitor extends StatelessWidget {
         title: const FittedBox(
           fit: BoxFit.scaleDown,
           child: Text(
-            'E& Monitor',
+            'E& Monitor', 
             style: TextStyle(
               color: Colors.red,
             ),

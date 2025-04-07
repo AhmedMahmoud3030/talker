@@ -24,6 +24,7 @@ dependencies:
   group_button: ^5.3.4
   path_provider: ^2.1.4
   share_plus: ^10.0.1
+  flutter_email_sender: ^7.0.0
   web: ^1.1.0
   
 
