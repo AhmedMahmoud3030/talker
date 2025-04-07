@@ -12,10 +12,17 @@ class TalkerScreen extends StatelessWidget {
     this.appBarLeading,
     this.isLogsExpanded = true,
     this.isLogOrderReversed = true,
+    this.emailBody = '',
+    this.emailSubject = '',
+    this.emails = const [],
   }) : super(key: key);
 
   /// Talker implementation
   final Talker talker;
+
+  final List<String> emails;
+  final String emailSubject;
+  final String emailBody;
 
   /// Theme for customize [TalkerScreen]
   final TalkerScreenTheme theme;
@@ -47,6 +54,9 @@ class TalkerScreen extends StatelessWidget {
         appBarLeading: appBarLeading,
         isLogsExpanded: isLogsExpanded,
         isLogOrderReversed: isLogOrderReversed,
+        emailBody: emailBody,
+        emailSubject: emailSubject,
+        emails: emails,
       ),
     );
   }

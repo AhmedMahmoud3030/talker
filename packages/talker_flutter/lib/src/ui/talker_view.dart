@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:group_button/group_button.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:talker_flutter/src/controller/controller.dart';
 import 'package:talker_flutter/src/ui/talker_monitor/talker_monitor.dart';
 import 'package:talker_flutter/src/ui/talker_settings/talker_settings.dart';
@@ -22,6 +25,9 @@ class TalkerView extends StatefulWidget {
     this.appBarLeading,
     this.isLogsExpanded = true,
     this.isLogOrderReversed = true,
+    required this.emails,
+    required this.emailSubject,
+    required this.emailBody,
   }) : super(key: key);
 
   /// Talker implementation
@@ -29,6 +35,10 @@ class TalkerView extends StatefulWidget {
 
   /// Theme for customize [TalkerScreen]
   final TalkerScreenTheme theme;
+
+  final List<String> emails;
+  final String emailSubject;
+  final String emailBody;
 
   /// Screen [AppBar] title
   final String? appBarTitle;
@@ -261,21 +271,28 @@ class _TalkerViewState extends State<TalkerView> {
   }
 
   Future<void> _shareLogsToDevelopers() async {
-    final logs = widget.talker.history
-        .text(timeFormat: widget.talker.settings.timeFormat);
-
-    final Email email = Email(
-      body: 'Please find the attached log file.',
-      subject: 'App Logs',
-      recipients: ['support@example.com'],
-      attachmentPaths: [logs],
-      isHTML: false,
-    );
     try {
+      final logs = widget.talker.history
+          .text(timeFormat: widget.talker.settings.timeFormat);
+
+      // Create a temporary file to store the logs
+      final tempDir = await getTemporaryDirectory();
+      final dateTime = DateTime.now().toString().replaceAll(':', '-');
+      final file = File('${tempDir.path}/app_logs_$dateTime.txt');
+      await file.writeAsString(logs);
+
+      final Email email = Email(
+        body: widget.emailBody,
+        subject: widget.emailSubject,
+        recipients: widget.emails, // Replace with your support email
+        attachmentPaths: [file.path], // Now using the actual file path
+        isHTML: false,
+      );
+
       await FlutterEmailSender.send(email);
     } catch (error) {
       debugPrint('Error sending email: $error');
-      // Handle the error (e.g., show a message to the user)
+      _showSnackBar(context, 'Failed to send logs: $error');
     }
   }
 
