@@ -99,7 +99,11 @@ class _TalkerViewAppBarState extends State<TalkerViewAppBar>
       expandedHeight: _spaceBarHeight ?? _defaultSpaceBarHeight,
       collapsedHeight: _defaultToolbarHeight,
       toolbarHeight: _defaultToolbarHeight,
-      leading: widget.leading,
+      leading: SizedBox(
+        width: 72, 
+        child: widget.leading ?? const SizedBox(),
+      ),
+      leadingWidth: 72,
       iconTheme: IconThemeData(color: widget.talkerTheme.textColor),
       actions: [
         UnconstrainedBox(
