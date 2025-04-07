@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:group_button/group_button.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:talker_flutter/src/controller/controller.dart';
 import 'package:talker_flutter/src/ui/talker_monitor/talker_monitor.dart';
 import 'package:talker_flutter/src/ui/talker_settings/talker_settings.dart';
@@ -232,6 +233,11 @@ class _TalkerViewState extends State<TalkerView> {
               title: 'Share https logs file',
               icon: Icons.wifi_1_bar_outlined,
             ),
+            TalkerActionItem(
+              onTap: _shareLogsToDevelopers,
+              title: 'Direct share to developers',
+              icon: Icons.developer_board,
+            ),
           ],
           talkerScreenTheme: widget.theme,
         );
@@ -251,6 +257,16 @@ class _TalkerViewState extends State<TalkerView> {
           .where((e) => e.key?.contains('http') ?? false)
           .toList()
           .text(timeFormat: widget.talker.settings.timeFormat),
+    );
+  }
+
+  Future<void> _shareLogsToDevelopers() async {
+    final logs = widget.talker.history
+        .text(timeFormat: widget.talker.settings.timeFormat);
+
+    await Share.share(
+      logs,
+      subject: 'E& Logs - ${DateTime.now().toString()}',
     );
   }
 
