@@ -26,7 +26,7 @@ class TalkerMonitor extends StatelessWidget {
           child: Text(
             'E& Monitor', 
             style: TextStyle(
-              color: Colors.red,
+              color: Colors.black,
             ),
           ),
         ),
@@ -73,7 +73,7 @@ class TalkerMonitor extends StatelessWidget {
                         RichText(
                           text: TextSpan(
                             text: '${httpRequests.length}',
-                            style: const TextStyle(color: Colors.white),
+                            style:  TextStyle(color: theme.textColor),
                             children: const [
                               TextSpan(text: ' http requests executed')
                             ],
@@ -83,10 +83,10 @@ class TalkerMonitor extends StatelessWidget {
                           text: TextSpan(
                             text: '${httpResponses.length} successful',
                             style: const TextStyle(color: Colors.green),
-                            children: const [
+                            children:  [
                               TextSpan(
                                 text: ' responses received',
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(color: theme.textColor),
                               ),
                             ],
                           ),
@@ -95,10 +95,10 @@ class TalkerMonitor extends StatelessWidget {
                           text: TextSpan(
                             text: '${httpErrors.length} failure',
                             style: const TextStyle(color: Colors.red),
-                            children: const [
+                            children:  [
                               TextSpan(
                                 text: ' responses received',
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(color: theme.textColor),
                               ),
                             ],
                           ),
